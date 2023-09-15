@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import AllProducts from './components/AllProducts';
+import './App.css';
+import { Login } from './components/Login';
+import Sorting from './components/Sorting';
+import DropdownMenu from './components/DropDownMenu';
+import Filter from './components/Filter';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <header>Summer Sale Going On Now! Free shipping for orders over $50!</header>
 
-export default App
+      <h1 id="windsor">Windsor</h1>
+
+      <div className="container">
+
+        <img
+          className="girl"
+          src="https://images.unsplash.com/photo-1619719773508-b39524e5e410?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2835&q=80"
+          alt="girl shopping"
+        />
+        <div className="navbar">
+          {/* Use the DropdownMenu component */}
+          <DropdownMenu />
+        </div>
+
+        <div id="main-section">
+          <Routes>
+            <Route path="/" element={<AllProducts />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sorting" element={<Sorting />} />
+            <Route path="/filter" element={<Filter />} /> 
+
+          </Routes>
+        </div>
+      </div>
+
+
+    </>
+  );
+}
