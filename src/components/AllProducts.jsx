@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Sorting from './Sorting'; // Import the Sorting component
-//import FilterModal from './FilterModal';
 import Filter from './Filter';
+import Cart from './Cart'
+
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -9,6 +10,24 @@ export default function AllProducts() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   //adding cart state
   const [cart, setCart] = useState([]);
+  const [cartVisible, setCartVisible] = useState(false);
+
+
+  const toggleCart = () => {
+    console.log("toggling cart ;)")
+    setCartVisible(!cartVisible);
+  };
+
+  const handleAddToCart = (product) => {
+    console.log('Adding to cart:', product);
+    setCart([...cart, product]);
+  };
+
+
+  const handleRemoveFromCart = (productId) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+  };
 
   useEffect(() => {
     // Fetch products when the component mounts
@@ -48,6 +67,9 @@ export default function AllProducts() {
 
           {/* Adding filtering component */}
           <Filter products={products} setFilteredProducts={updateFilteredProducts} />
+
+          {/* Display cart */}
+          {cartVisible && <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart} />}
           
         </div>
 
@@ -64,15 +86,19 @@ export default function AllProducts() {
               <button className="description-button" data-id={product.description}>
                 View Description
               </button>
-              <button className="add-button" data-id={product.id}>
+              <button className="add-button" onClick = {() => handleAddToCart(product)}>
                 Add to Cart
               </button>
             </div>
           )
           ))}
+
+         
         </div>
       </div>
     </div>
   );
 }
+
+
 
