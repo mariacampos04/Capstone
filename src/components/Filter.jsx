@@ -20,7 +20,8 @@ export default function Filter({ products, setFilteredProducts }) {
   };
 
   return (
-    <div>
+    <div className="filter-container">
+      {/* Category selection */}
       <label>
         Category:
         <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
@@ -32,6 +33,7 @@ export default function Filter({ products, setFilteredProducts }) {
         </select>
       </label>
 
+      {/* Minimum price selection*/}
       <label>
         Min Price:
         <select value={minPriceFilter} onChange={(e) => setMinPriceFilter(e.target.value)}>
@@ -39,14 +41,16 @@ export default function Filter({ products, setFilteredProducts }) {
           <option value="10">$5</option>
           <option value="20">$10</option>
           <option value="30">$20</option>
-          <option value="40">$20</option>
+          <option value="30">$30</option>
         </select>
       </label>
 
+      {/* Maximum price selection */}
       <label>
         Max Price:
         <select value={maxPriceFilter} onChange={(e) => setMaxPriceFilter(e.target.value)}>
           <option value="">Any</option>
+          <option value="25">$25</option>
           <option value="50">$50</option>
           <option value="100">$100</option>
           <option value="150">$150</option>

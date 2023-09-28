@@ -24,9 +24,10 @@ const Sorting = ({ products, setProducts }) => {
     }
   };
 
+  //sorting options displayed 
   return (
-    <div>
-      <label id = "SortBy" htmlFor="sortSelect">Sort by: </label>
+    <div className="sorting-container">
+      <label htmlFor="sortSelect">Sort by:</label>
       <select id="sortSelect" onChange={handleSort} value={selectedOption}>
         <option value="">Select an option</option>
         <option value="priceLowToHigh">Price Low to High</option>
@@ -39,5 +40,6 @@ const Sorting = ({ products, setProducts }) => {
 };
 
 export default Sorting;
+
 
 
